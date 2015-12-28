@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -11,8 +13,9 @@ namespace Tazos.Tools.Extensions.EntityFramework
 {
     public static class IncludeExtenstions
     {
-        public static ObjectQuery<T> Include<T>(this ObjectQuery<T> query, Expression<Func<T, object>> selector)
+        public static DbQuery<T> Include<T>(this DbSet<T> query, Expression<Func<T, object>> selector) where T: class
         {
+            
             string path = new PropertyPathVisitor().GetPropertyPath(selector);
             return query.Include(path);
         }
