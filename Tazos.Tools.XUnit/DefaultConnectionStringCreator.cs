@@ -13,8 +13,8 @@ namespace Tazos.Tools.XUnit
 
         public string Create()
         {
-            var number = new Random().Next();
-            var databaseName = $"TestDatabase_{number}";
+            var randomValue = Guid.NewGuid();
+            var databaseName = $"TestDatabase_{randomValue}";
 
             var cs = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
             cs = cs.Replace("{Database}", databaseName);
