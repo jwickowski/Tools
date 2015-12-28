@@ -13,6 +13,11 @@ namespace Tazos.Tools.XUnit
         protected DatabaseTest(string connectionStringName)
         {
             this.connectionStringName = connectionStringName;
+
+            TestEnviromentCleaner = new DefaultTestEnviromentCleaner(DatabaseRemover);
+            TestEnviromentPreparer =
+            new DefaultTestEnviromentPreparer(DatabaseCreator, connectionStringName);
+            Token = TestEnviromentPreparer.Prepare();
         }
 
         public DefaultTestEnviromentCleaner TestEnviromentCleaner { get; set; }
@@ -20,14 +25,6 @@ namespace Tazos.Tools.XUnit
         public DefaultTestEnviromentPreparer TestEnviromentPreparer { get; set; }
 
         protected readonly DefaultTestToken Token;
-
-        protected DatabaseTest()
-        {
-            TestEnviromentCleaner = new DefaultTestEnviromentCleaner(DatabaseRemover);
-            TestEnviromentPreparer =
-            new DefaultTestEnviromentPreparer(DatabaseCreator, connectionStringName);
-            Token = TestEnviromentPreparer.Prepare();
-        }
 
         public void Dispose()
         {
