@@ -7,13 +7,8 @@ namespace Tazos.Tools.XUnit
         protected abstract DatabaseCreator DatabaseCreator { get; }
         protected abstract DatabaseRemover DatabaseRemover { get; }
 
-
-        private readonly string connectionStringName;
-
         protected DatabaseTest(string connectionStringName)
         {
-            this.connectionStringName = connectionStringName;
-
             TestEnviromentCleaner = new DefaultTestEnviromentCleaner(DatabaseRemover);
             TestEnviromentPreparer =
             new DefaultTestEnviromentPreparer(DatabaseCreator, connectionStringName);
