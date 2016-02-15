@@ -28,6 +28,8 @@
   </PropertyGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Add-DataTakenToFilesName.ps1" />
+    <Compile Include="Get-FileMetaData.ps1" />
     <Compile Include="Get-MD5.ps1" />
     <Compile Include="Remove-Duplicates.ps1" />
   </ItemGroup>
