@@ -4,7 +4,7 @@
     {
         private readonly DatabaseCreator databaseCreator;
         private string connectionStringName;
-
+        private static object _lock = new object();
         public DefaultTestEnviromentPreparer(DatabaseCreator databaseCreator, string connectionStringName)
         {
             this.databaseCreator = databaseCreator;
@@ -26,7 +26,11 @@
 
         public void CreateDatabase(DefaultTestToken token)
         {
-            databaseCreator.Create(token.ConnectionString);
+            lock (_lock)
+            {
+                databaseCreator.Create(token.ConnectionString);
+            }
+           
         }
     }
 }
