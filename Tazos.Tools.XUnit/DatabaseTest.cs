@@ -21,7 +21,7 @@ namespace Tazos.Tools.XUnit
 
         protected readonly DefaultTestToken Token;
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             TestEnviromentCleaner.Clean(Token);
         }
