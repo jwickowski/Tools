@@ -9,7 +9,7 @@ $culture = [System.Globalization.CultureInfo]::InvariantCulture
 
 $parsedDate = [DateTime]::ParseExact($rawDate, $pattern, $culture)
 
-$formatedDate = $parsedDate.ToString('yyyy.mm.dd HH-mm');
+$formatedDate = $parsedDate.ToString('yyyy.MM.dd HH-mm');
 $formatedDate 
 }
 
