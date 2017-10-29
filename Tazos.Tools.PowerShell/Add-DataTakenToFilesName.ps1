@@ -55,7 +55,8 @@ function Add-DataTakenToFilesName{
         $filePath = Join-Path -Path $Path -ChildPath $fileName
         $newName = $dateTaken + ' - ' + $fileName 
         $newPath = Join-Path -Path $Path -ChildPath $newName
-        Copy-Item -Path  $filePath -Destination $newPath
+
+        Rename-Item -Path $filePath -newName $newName
 		
 
 	}
