@@ -56,6 +56,9 @@ function Get-FileMetaData
 function Get-DataTaken {
     param ($fileMetadata)
     $rawDate = $fileMetadata.'Data wykonania'
+    if($rawDate -eq $null){
+      $rawDate = $fileMetadata.'Data modyfikacji'
+    }
     $rawDate = $rawDate -replace '[^a-zA-Z0-9 :.]', '' #remove non date format characters
     $datePattern = [System.Threading.Thread]::CurrentThread.CurrentUICulture.DateTimeFormat.ShortDatePattern;
     $timePattern = [System.Threading.Thread]::CurrentThread.CurrentUICulture.DateTimeFormat.ShortTimePattern;
