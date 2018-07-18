@@ -7,7 +7,6 @@ function Add-DataTakenToFilesName{
 	$filesMetadata = Get-FileMetaData -folder $Path
 	foreach($fileMetadata in $filesMetadata)
 	{
-       
 		$dateTaken = Get-DataTaken -fileMetadata $fileMetadata
 		if (-not $dateTaken)
 		{
@@ -38,6 +37,8 @@ function Get-FileMetaData
 
     foreach ($File in $objFolder.items())
     { 
+        $filePath = $File.path;
+        Write-Host "Getting metadata for '$filePath'"
         $FileMetaData = New-Object PSOBJECT
         for ($a ; $a  -le 266; $a++)
         { 
