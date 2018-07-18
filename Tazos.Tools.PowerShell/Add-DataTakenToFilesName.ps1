@@ -7,6 +7,7 @@ function Add-DataTakenToFilesName{
 	$filesMetadata = Get-FileMetaData -folder $Path
 	foreach($fileMetadata in $filesMetadata)
 	{
+       
 		$dateTaken = Get-DataTaken -fileMetadata $fileMetadata
 		if (-not $dateTaken)
 		{
@@ -14,8 +15,8 @@ function Add-DataTakenToFilesName{
 		}
        
 		$fileName = Get-FileName -fileMetadata $fileMetadata
-
-		if($fileName.StartsWith($dateTaken) )
+        $isFileNameStartsWithDate = $fileName.StartsWith($dateTaken)
+		if($isFileNameStartsWithDate)
 		{
 			continue
 		}
@@ -78,10 +79,10 @@ function Get-FileName {
     $extenstion = Get-Extension -fileMetadata $fileMetadata
     if($name.EndsWith($extenstion) )
     {
-        $name
+        return $name
     }
     $name = $name + $extenstion
-    $name
+    return $name
 }
 
 function Get-Extension {
